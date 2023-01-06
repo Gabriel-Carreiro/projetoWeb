@@ -11,9 +11,9 @@
     
     <title>Home</title>
 </head>
-<body style="background-color: beige;">
+<body class="img-fluid" style="background-image: url('imgs/fundo.webp'); background-repeat: no-repeat; background-size: cover;">
     <!-- Barra navegação -->
-    <nav class="navbar" style="background-color: burlywood;">
+    <nav class="navbar" style="background-color: lightskyblue">
         <div class="container-fluid">
             <!-- Texto escrito na barra à esquerda -->
             <a class="navbar-brand" href="#"><b>Metereologia</b></a>
@@ -37,33 +37,45 @@
                 <div class="offcanvas-body">
                     <!-- Lista de opções -->
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        
                         <!-- Primeira opção - Home -->
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#" style="color: white; font-weight: bold;">Home</a>
                         </li>
 
-                        <!-- Segunda opção - Favoritos -->
+                        <!-- Segunda opção - Detalhes -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="detalhes.html" style="color: white; font-weight: bold;">Detalhes</a>
+                        </li>
+
+                        <!-- Terceira opção - Forecast -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; font-weight: bold;">Favoritos</a>
+                            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white; font-weight: bold;">Forecast</a>
 
                             <!-- Criar lista dropdown dentro da opção Favoritos -->
                             <ul class="dropdown-menu dropdown-menu-dark">
 
                                 <!-- Opção 1 -->
                                 <li>
-                                    <a class="dropdown-item" href="#">Ação 1</a>
+                                    <a class="dropdown-item" href="forecast_5dias.html"><b>5 dias</b></a>
                                 </li>
 
                                 <!-- Opção 2 -->
                                 <li>
-                                    <a class="dropdown-item" href="#">Ação 2</a>
+                                    <a class="dropdown-item" href="forecast_3horas.html"><b>3 horas</b></a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <!-- Quarta opção - Favoritos -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="favoritos.html" style="color: white; font-weight: bold;">Favoritos</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </nav>
+    <!-- Fim da barra de navegação -->
 </body>
 </html>
