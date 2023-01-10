@@ -2,6 +2,15 @@ li {
     list-style: none;
 }
 
-#tempo{
+#tempo {
     margin-left: 100px;
+}
+
+#temp2, #hum2 {
+    font-weight: normal;
+}
+
+#legenda th, tr {
+    padding: 10px;
+    margin: 20px;
 }
