@@ -94,13 +94,13 @@
             <div class="card-body m-auto" style="width: fit-content; align-content: center;">
                 <ul class="list-group list-group-flush" id="lista">
                     <div class="panel">
-                        <li class="list-group-item" id="temp" onclick="forecast_3h()">
-                            <span style="display: none;" id="ident"></span>
+                        <li class="list-group-item" id="temp" onclick="forecast_3h(id_date)">
+                            <span id="id_date" style="display: none;"></span>
                             <span id="data"></span>
                             <span><img class="owm-weather-icon" id="tempo" alt="Tempo Atual"></span>
                             <span id="temperatura"></span>
                             <span>
-                                <img class="owm-weather-icon" src="imgs/vento.png" alt="Icon Vento" style="width: 25px; margin-left: 100px; margin-right: 10px;">
+                                <img class="owm-weather-icon" src="imgs/vento.png" alt="Icon Vento" style="width: 25px; margin-left: 90px; margin-right: 10px;">
                             </span>
                             <span id="vento"></span>
                             <span>
@@ -111,29 +111,28 @@
                     </div>
                 </ul>
                 <div class="scrolling-container" id="lista2" onclick="forecast_5d()">
-                    <div class="scrolling-container-content">
-                        <div class="daily-detail-container" id="forecast">
-                            <table id="tabela">
-                                <tr id="legenda">
-                                    <th><img class="owm-weather-icon float-start" id="tempo2" alt="Forecast"></th>
-                                    <th>Manhã</th>
-                                    <th>Tarde</th>
-                                    <th>Noite</th>
-                                </tr>
-                                <tr>
-                                    <th>Temperatura [°C]</th>
-                                    <th id="temp2"></th>
-                                    <th id="temp2"></th>
-                                    <th id="temp2"></th>
-                                </tr>
-                                <tr>
-                                    <th>Humidade [%]</th>
-                                    <th id="hum2"></th>
-                                    <th id="hum2"></th>
-                                    <th id="hum2"></th>
-                                </tr>
-                            </table>
-                        </div>
+                    <div class="scrolling-container-content" id="forecast">
+                        <div id="data_atual"></div>
+                        <table id="tabela" style="align-items: center;">
+                            <tr id="legenda">
+                                <th><img class="owm-weather-icon" id="tempo2" alt="Forecast"></th>
+                                <th>Manhã</th>
+                                <th>Tarde</th>
+                                <th>Noite</th>
+                            </tr>
+                            <tr>
+                                <th>Temperatura [°C]</th>
+                                <th id="temp2"></th>
+                                <th id="temp3"></th>
+                                <th id="temp4"></th>
+                            </tr>
+                            <tr>
+                                <th>Humidade [%]</th>
+                                <th id="hum2"></th>
+                                <th id="hum3"></th>
+                                <th id="hum4"></th>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
