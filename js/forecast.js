@@ -1,57 +1,71 @@
-var cloneTemp = $("#temp").clone();
-var cloneFor = $("#forecast").clone();
-//console.log(cloneTemp);
+'use strict'
 
-const apiKey = "82f4545f768cc3b045c97cca21bab0f3";
-var city = 'Leiria';
+let city = 'Leiria';
+let apiKey = "82f4545f768cc3b045c97cca21bab0f3";
+let cloneTemp = $("#temp").clone();
+let cloneFor = $("#forecast").clone();
 
-$("#lista").html("");
-$("#lista2").html("");
+forecast_list();
 
-$.ajax({
-    method: "GET",
-    url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + apiKey + "&lang=pt"
-}).done(function(msg) {
-    //alert("Processo GET terminado!");
+function procurar(elemento) {
+    city = $(elemento).val();
+    $(elemento).val('');
+    forecast_list();
+}
 
-    console.log(msg);
-    //alert(msg.name);
+function forecast_list() {
+    console.log(city);
+
+    //console.log(cloneTemp);
+
+    $("#lista").html("");
+    $("#lista2").html("");
+
+    $.ajax({
+        method: "GET",
+        url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + apiKey + "&lang=pt"
+    }).done(function(msg) {
+        //alert("Processo GET terminado!");
+
+        console.log(msg);
+        //alert(msg.name);
 
 
-    //Valores Forecast 5 dias
-    for(i=0; i<msg.list.length; i++) {
-        var j = i-1;
-        var liTemp = cloneTemp.clone();        
+        //Valores Forecast 5 dias
+        for(var i=0; i<msg.list.length; i++) {
+            var j = i-1;
+            var liTemp = cloneTemp.clone();        
 
-        if (i==0) {
-            $("#cidade").text(msg.city.name);
-            $("#id_date", liTemp).text(msg.list[i].dt);
-            $("#data", liTemp).text(data(msg,i));
-            $("#tempo", liTemp).attr("src", "http://openweathermap.org/img/wn/" + msg.list[i].weather[0].icon + ".png");
-            $("#temperatura", liTemp).text(parseInt(msg.list[i].main.temp_max) + " / " + parseInt(msg.list[i].main.temp_min) + "°C");
-            $("#vento", liTemp).text(parseFloat(msg.list[i].wind.speed.toFixed(1)) + " m/s");
-            $("#hum", liTemp).text(parseInt(msg.list[i].main.humidity) + " %");
+            if (i==0) {
+                $("#cidade").text(msg.city.name);
+                $("#id_date", liTemp).text(msg.list[i].dt);
+                $("#data", liTemp).text(data(msg,i));
+                $("#tempo", liTemp).attr("src", "http://openweathermap.org/img/wn/" + msg.list[i].weather[0].icon + ".png");
+                $("#temperatura", liTemp).text(parseInt(msg.list[i].main.temp_max) + " / " + parseInt(msg.list[i].main.temp_min) + "°C");
+                $("#vento", liTemp).text(parseFloat(msg.list[i].wind.speed.toFixed(1)) + " m/s");
+                $("#hum", liTemp).text(parseInt(msg.list[i].main.humidity) + " %");
 
-            //Atualizar os valores no html
-            $("#lista").append(liTemp);
+                //Atualizar os valores no html
+                $("#lista").append(liTemp);
+            }
+
+            else if (msg.list[j].dt_txt.substring(8,10) != msg.list[i].dt_txt.substring(8,10)) {
+                $("#cidade").text(msg.city.name);
+                $("#id_date", liTemp).text(msg.list[i].dt);
+                $("#data", liTemp).text(data(msg,i));
+                $("#tempo", liTemp).attr("src", "http://openweathermap.org/img/wn/" + msg.list[i].weather[0].icon + ".png");
+                $("#temperatura", liTemp).text(parseInt(msg.list[i].main.temp_max) + " / " + parseInt(msg.list[i].main.temp_min) + "°C");
+                $("#vento", liTemp).text(parseFloat(msg.list[i].wind.speed.toFixed(1)) + " m/s");
+                $("#hum", liTemp).text(parseInt(msg.list[i].main.humidity) + " %");
+
+                //console.log(i);
+
+                //Atualizar os valores no html
+                $("#lista").append(liTemp);
+            }
         }
-
-        else if (msg.list[j].dt_txt.substring(8,10) != msg.list[i].dt_txt.substring(8,10)) {
-            $("#cidade").text(msg.city.name);
-            $("#id_date", liTemp).text(msg.list[i].dt);
-            $("#data", liTemp).text(data(msg,i));
-            $("#tempo", liTemp).attr("src", "http://openweathermap.org/img/wn/" + msg.list[i].weather[0].icon + ".png");
-            $("#temperatura", liTemp).text(parseInt(msg.list[i].main.temp_max) + " / " + parseInt(msg.list[i].main.temp_min) + "°C");
-            $("#vento", liTemp).text(parseFloat(msg.list[i].wind.speed.toFixed(1)) + " m/s");
-            $("#hum", liTemp).text(parseInt(msg.list[i].main.humidity) + " %");
-
-            //console.log(i);
-
-            //Atualizar os valores no html
-            $("#lista").append(liTemp);
-        }
-    }
-});
+    });
+}
 
 function data(msg,i) {
     let dt = new Date(msg.list[i].dt * 1000).toDateString(); //timestamp * 1000
@@ -78,6 +92,7 @@ function get_day(valor_data) {
 }
 
 function forecast_3h(element) {
+
     let clickedLI = $(element);
     let data_value = parseInt(clickedLI.children().first().text() * 1000);
     let atual_data = new Date(data_value);
@@ -86,6 +101,7 @@ function forecast_3h(element) {
     console.log(atual_data);
 
     $("#lista").css("display", "none");
+    $("#procurar").css("display", "none");
     $("#lista2").css("display", "block");
 
     $.ajax({
@@ -143,5 +159,6 @@ function forecast_3h(element) {
 
 function forecast_5d() {
     $("#lista").css("display", "block");
+    $("#procurar").css("display", "block");
     $("#lista2").empty();
 }

@@ -1,3 +1,5 @@
+'use strict';
+
 var cloneTemp = $("#temp").clone();
 //console.log(cloneTemp);
 
