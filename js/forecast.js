@@ -3,7 +3,7 @@ var cloneFor = $("#forecast").clone();
 //console.log(cloneTemp);
 
 const apiKey = "82f4545f768cc3b045c97cca21bab0f3";
-var city = 'Leiria';
+var city = 'London';
 
 $("#lista").html("");
 $("#lista2").html("");
@@ -59,11 +59,20 @@ function data(msg,i) {
     return dt.substring(0,4) + "| " + dt.substring(8,11) + dt.substring(4,7);
 }
 
-function forecast_3h(data) {
+function data2(valor) {
+    let dt = new Date(valor * 1000).toDateString(); //timestamp * 1000
+
+    return dt.substring(0,4) + "| " + dt.substring(8,11) + dt.substring(4,7);
+}
+
+function forecast_3h(element) {
+    let clickedLI = $(element);
+    let data_value = clickedLI.children().first().text();
+
+    //console.log(data_value);
+
     $("#lista").css("display", "none");
     $("#lista2").css("display", "block");
-
-    console.log($("data").text());
 
     $.ajax({
         method: "GET",
@@ -75,57 +84,68 @@ function forecast_3h(data) {
         var liFor = cloneFor.clone();
 
         //Valores Forecast 3 horas
-        
+        $("#data_atual", liFor).text(data2(data_value));
+
+        console.log(data_value);
         //for(dia=0; dia<5; dia=+86400)
         for(var i=0; i<msg.list.length; i++) {
             //Manhã
-            if((msg.list[i].dt > msg.city.sunrise) && (msg.list[i].dt < msg.city.sunset)) {
-                $("#temp2", liFor).text(parseInt(msg.list[i+1].main.temp.toFixed(0)));
-                $("#hum2", liFor).text(parseInt(msg.list[i+1].main.humidity.toFixed(0)));
+            if(msg.list[i].dt > data_value) {
+                if((msg.list[i].dt > msg.city.sunrise) && (msg.list[i].dt < msg.city.sunset)) {
+                    $("#temp2", liFor).text(parseInt(msg.list[i+1].main.temp.toFixed(0)));
+                    $("#hum2", liFor).text(parseInt(msg.list[i+1].main.humidity.toFixed(0)));
 
-                console.log("Manhã");
-                console.log(msg.list[i].dt);
-                //console.log(data(msg));
+                    console.log("Manhã");
+                    console.log(msg.list[i].dt);
+                    console.log(i);
+                    //console.log(data(msg));
 
-                break;
-            }
+                    break;
+                }
 
-            else {
-                $("#temp2", liFor).text("-");
-                $("#hum2", liFor).text("-");
+                else {
+                    $("#temp2", liFor).text("-");
+                    $("#hum2", liFor).text("-");
+                }
             }
         }
 
         for(i=0; i<msg.list.length; i++) {
             //Tarde
-            if((msg.list[i].dt > ((msg.city.sunrise + msg.city.sunset)/2)) && (msg.list[i].dt > msg.city.sunrise) && (msg.list[i].dt < msg.city.sunset)) {
-                $("#temp3", liFor).text(parseInt(msg.list[i].main.temp.toFixed(0)));
-                $("#hum3", liFor).text(parseInt(msg.list[i].main.humidity.toFixed(0)));
+            if(msg.list[i].dt > data_value) {
+                if((msg.list[i].dt > ((msg.city.sunrise + msg.city.sunset)/2)) && (msg.list[i].dt > msg.city.sunrise) && (msg.list[i].dt < msg.city.sunset)) {
+                    $("#temp3", liFor).text(parseInt(msg.list[i].main.temp.toFixed(0)));
+                    $("#hum3", liFor).text(parseInt(msg.list[i].main.humidity.toFixed(0)));
 
-                console.log("Tarde");
-                console.log(msg.list[i].dt);
-                //console.log(data(msg));
+                    console.log("Tarde");
+                    console.log(msg.list[i].dt);
+                    console.log(i);
+                    //console.log(data(msg));
 
-                break;
-            }
+                    break;
+                }
 
-            else {
-                $("#temp3", liFor).text("-");
-                $("#hum3", liFor).text("-");
+                else {
+                    $("#temp3", liFor).text("-");
+                    $("#hum3", liFor).text("-");
+                }
             }
         }
 
         for(i=0; i<msg.list.length; i++) {
             //Noite
-            if(msg.list[i].dt > msg.city.sunset) {
-                $("#temp4", liFor).text(parseInt(msg.list[i].main.temp.toFixed(0)));
-                $("#hum4", liFor).text(parseInt(msg.list[i].main.humidity.toFixed(0)));
+            if(msg.list[i].dt > data_value) {
+                if(msg.list[i].dt > msg.city.sunset) {
+                    $("#temp4", liFor).text(parseInt(msg.list[i].main.temp.toFixed(0)));
+                    $("#hum4", liFor).text(parseInt(msg.list[i].main.humidity.toFixed(0)));
 
-                console.log("Noite");
-                console.log(msg.list[i].dt);
-                //console.log(data(msg));
+                    console.log("Noite");
+                    console.log(msg.list[i].dt);
+                    console.log(i);
+                    //console.log(data(msg));
 
-                break;
+                    break;
+                }
             }
         }
 
