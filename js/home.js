@@ -14,12 +14,21 @@ function procurar(elemento) {
 
     city = $(elemento).val();
     $(elemento).val('');
+
+    if (typeof(Storage) !== "undefined") {
+        localStorage.setItem("nome", city);
+    }
+    else {
+        //Aviso para o não suporte do web storage
+        alert("Não é válido!");
+        event.preventDefault();
+    }
     city_value();
 }
 
 function home_list() {
 
-    console.log(city);
+    //console.log(city);
 
     $("#lista").html("");
 
@@ -31,7 +40,7 @@ function home_list() {
         }).done(function(msg) {
             //alert("Processo GET terminado!");
 
-            console.log(msg);
+            //console.log(msg);
             //alert(msg.name);
 
             var liTemp = cloneTemp.clone();
@@ -48,7 +57,7 @@ function home_list() {
 
 function city_value() {
 
-    console.log(city);
+    //console.log(city);
 
     $.ajax({
         method: "GET",
@@ -64,7 +73,6 @@ function city_value() {
             $("#temperatura2").text(parseInt(msg.main.temp_max) + " / " + parseInt(msg.main.temp_min) + "°C");
             $("#vento2").text(parseFloat(msg.wind.speed.toFixed(1)) + " m/s");
             $("#hum2").text(parseInt(msg.main.humidity) + " %");
-
     });
 }
 
