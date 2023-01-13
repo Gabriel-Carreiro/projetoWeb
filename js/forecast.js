@@ -3,7 +3,7 @@
 let city = 'Leiria';
 let apiKey = "82f4545f768cc3b045c97cca21bab0f3";
 let cloneTemp = $("#temp").clone();
-let cloneFor = $("#forecast").clone();
+let cloneFor = $("#forecast-table").clone();
 
 forecast_list();
 
@@ -14,7 +14,7 @@ function procurar(elemento) {
 }
 
 function forecast_list() {
-    console.log(city);
+    //console.log(city);
 
     //console.log(cloneTemp);
 
@@ -23,13 +23,13 @@ function forecast_list() {
 
     $.ajax({
         method: "GET",
-        url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + apiKey + "&lang=pt"
+        url: "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=metric&appid=" + apiKey + "&lang=pt",
+
     }).done(function(msg) {
         //alert("Processo GET terminado!");
 
         console.log(msg);
         //alert(msg.name);
-
 
         //Valores Forecast 5 dias
         for(var i=0; i<msg.list.length; i++) {
@@ -97,8 +97,8 @@ function forecast_3h(element) {
     let data_value = parseInt(clickedLI.children().first().text() * 1000);
     let atual_data = new Date(data_value);
 
-    console.log(data_value);
-    console.log(atual_data);
+    //console.log(data_value);
+    //console.log(atual_data);
 
     $("#lista").css("display", "none");
     $("#procurar").css("display", "none");
@@ -113,45 +113,48 @@ function forecast_3h(element) {
 
         var atual_hour, atual_temp, atual_hum;
 
-        $("#data_atual", liFor).text(data2(data_value));
-        $("#tempo2", liFor).attr("src", "http://openweathermap.org/img/wn/" + msg.list[0].weather[0].icon + ".png");
+        $("#data_atual", cloneFor).text(data2(data_value));
+        $("#tempo2", cloneFor).attr("src", "http://openweathermap.org/img/wn/" + msg.list[0].weather[0].icon + ".png");
+
+        let hour_row = $(cloneFor).find('.time_row');
+        let temp_row = $(cloneFor).find('.temp_row');
+        let hum_row = $(cloneFor).find('.hum_row');
 
         for(var i=0; i<msg.list.length; i++) {
-            var liFor = cloneFor.clone();
             let atual_day = get_day(atual_data); 
+
+            let td_hour = document.createElement("td");
+            let td_temp = document.createElement("td");
+            let td_hum = document.createElement("td");
 
             if(atual_day == get_day(new Date(msg.list[i].dt * 1000))) {
                 let atual_hour = get_hour(new Date(msg.list[i].dt * 1000));
                 let atual_temp = parseInt(msg.list[i].main.temp);
                 let atual_hum = parseInt(msg.list[i].main.humidity);
 
-                console.log(i);
-                console.log(get_day(atual_data) + "atual_data");
-                console.log(get_day(new Date(msg.list[i].dt * 1000)) + "data [" + i + "]");
-                console.log(atual_temp);
-                console.log(atual_hour);
-                console.log(atual_hum);
+                //console.log(i);
+                //console.log(get_day(atual_data) + "atual_data");
+                //console.log(get_day(new Date(msg.list[i].dt * 1000)) + "data [" + i + "]");
+                //console.log(atual_temp);
+                //console.log(atual_hour);
+                //console.log(atual_hum);
 
                 //Valores Forecast 3 horas
-                $("#hour2", liFor).text(atual_hour + ":00");
-                $("#temp2", liFor).text(atual_temp + "°C");
-                $("#hum2", liFor).text(atual_hum + " %");
-
-                //Atualizar os valores no html
-                $("#lista2").append(liFor);
+                $(td_hour).text(atual_hour + ":00");
+                $(td_temp).text(atual_temp + "°C");
+                $(td_hum).text(atual_hum + "%");
                 
                 atual_day=+3;
             }
-            else {
-                //Valores Forecast 3 horas
-                $("#hour2", liFor).text("-");
-                $("#temp2", liFor).text("-");
-                $("#hum2", liFor).text("-");
-            }
+
+            $(hour_row).append(td_hour);
+            $(temp_row).append(td_temp);
+            $(hum_row).append(td_hum);
+            
         }
 
         //$("#lista2").append(liFor);
-        $("#lista2").append(liFor);
+        $("#lista2").append(cloneFor);
 
         //console.log($("#data").text());
     });

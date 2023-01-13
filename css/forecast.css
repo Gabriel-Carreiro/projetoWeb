@@ -6,11 +6,14 @@ li {
     margin-left: 100px;
 }
 
-#temp2, #hum2 {
-    font-weight: normal;
+#forecast-table th, tr, td{
+    padding: 1.2rem; /* 1rem é igual ao $spacer que é utilizado no bootstrap */
 }
 
-#legenda th, tr {
-    padding: 10px;
-    margin: 20px;
+.time_row {
+    font-weight: bold;
+}
+
+#data_atual{
+    font-weight: normal;
 }

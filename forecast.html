@@ -52,7 +52,7 @@
 
                         <!-- Terceira opção - Forecast -->
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" style="color: white; font-weight: bold;">Forecast</a>
+                            <a class="nav-link active" aria-current="page" href="forecast.html" style="color: white; font-weight: bold;">Forecast</a>
                         </li>
 
                         <!-- Quarta opção - Favoritos -->
@@ -96,23 +96,22 @@
                     </div>
                 </ul>
                 <div class="scrolling-container" id="lista2" onclick="forecast_5d()">
-                    <div>
-                        <img class="owm-weather-icon" id="tempo2" alt="Forecast">
+                    <div id="imagem">
+                        
                     </div>
-                    <div class="scrolling-container-content" id="forecast">
-                        <div id="data_atual"></div>
-                        <table id="tabela" style="align-items: center;">
-                            <tr id="legenda">
-                                <th></th>
-                                <th id="hour2"></th>
+                    <div class="scrolling-container-content">  
+                        <table id="forecast-table">
+                            <tr class="time_row">
+                                <th>
+                                    <div id="data_atual"></div>
+                                    <img class="owm-weather-icon" id="tempo2" alt="Forecast">                            
+                                </th>
                             </tr>
-                            <tr>
+                            <tr class="temp_row">
                                 <th>Temperatura [°C]</th>
-                                <th id="temp2"></th>
                             </tr>
-                            <tr>
+                            <tr class="hum_row">
                                 <th>Humidade [%]</th>
-                                <th id="hum2"></th>
                             </tr>
                         </table>
                     </div>
