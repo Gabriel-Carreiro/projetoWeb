@@ -13,3 +13,7 @@ li {
 #cidade {
     font-weight: bold;
 }
+
+#remover, #inserir {
+    margin-left: 70px;
+}

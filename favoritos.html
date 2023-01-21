@@ -71,6 +71,12 @@
         <div class="card text-center mx-auto" id="card" style="width: 50%; margin-top: 100px;">
             <div class="card-header">
                 <h3 class="card-title">Favoritos</h3>
+                <div>
+                    <input type="text" id="remover" placeholder="Cidade...">
+                    <button class="btn btn-primary" id="btRemove" onclick="remove(remover)">Remover</button>
+                    <input type="text" id="inserir" placeholder="Cidade...">
+                    <button class="btn btn-primary" id="btInsert" onclick="insert(inserir)">Inserir</button>
+                </div>
             </div>
             <div class="card-body m-auto" style="width: fit-content; align-content: center;">
                 <ul class="list-group list-group-flush" id="lista">
