@@ -1,5 +1,7 @@
 'use strict';
 
+let stored_data = obter();
+let stored_data_size;
 let city = ['Leiria', 'Lisboa', 'Porto', 'Funchal', 'Viseu', 'Braga'];
 let apiKey = "82f4545f768cc3b045c97cca21bab0f3";
 let cloneTemp = $("#temp").clone();
@@ -14,17 +16,49 @@ function procurar(elemento) {
 
     city = $(elemento).val();
     $(elemento).val('');
+    stored_data = obter();
 
-    if (typeof(Storage) !== "undefined") {
-        localStorage.setItem("nome", city);
+    if(stored_data != null) {
+        stored_data_size = Object.keys(stored_data).length;
+        console.log(stored_data);
+        console.log(stored_data_size);
+        console.log(city);
+
+        for(var i=0; i<stored_data_size; i++) {
+            if(stored_data[i] == city) {
+                alert("Cidade já existe!");
+                break;
+            }
+
+            else {
+                alert("Passei aqui1");
+                if(typeof(Storage) !== "undefined") {
+                    localStorage.setItem("nome", city);
+                    salvar();
+                }
+            
+                else {
+                    //Aviso para o não suporte do web storage
+                    alert("Não é válido!");
+                    event.preventDefault();
+                }
+            }
+        }
     }
+
     else {
-        //Aviso para o não suporte do web storage
-        alert("Não é válido!");
-        event.preventDefault();
+        if(typeof(Storage) !== "undefined") {
+            localStorage.setItem("nome", city);
+            salvar();
+        }
+    
+        else {
+            //Aviso para o não suporte do web storage
+            alert("Não é válido!");
+            event.preventDefault();
+        }
     }
     city_value();
-    salvar();
 }
 
 function home_list() {
@@ -33,7 +67,7 @@ function home_list() {
 
     $("#lista").html("");
 
-    for(var i=0; i<6; i++) {
+    for(var i=0; i<city.length; i++) {
 
         $.ajax({
             method: "GET",
@@ -112,5 +146,21 @@ function salvar() {
     else {
         alert("Não é válido!");
         event.preventDefault();
+    }
+}
+
+function obter() {
+    if (typeof(Storage) != "undefined") {
+        //Passar do localstorage para um variável
+        let get_stored_data =  localStorage.getItem('old_data');
+
+        return JSON.parse(get_stored_data);
+    }
+
+    else {
+        alert("Não é válido!");
+        event.preventDefault();
+
+        return null;
     }
 }
