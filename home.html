@@ -71,9 +71,9 @@
         <div class="card text-center mx-auto" id="card" style="width: 50%; margin-top: 100px;">
             <div class="card-header">
                 <h3 class="card-title">Metereologia</h3>
-                <div id="procurar">
-                    <input type="text" id="pesquisa" placeholder="Cidade...">
-                    <button class="btn btn-primary" id="btSearch" onclick="procurar(pesquisa)">Pesquisar</button>
+                <div class="input-group w-50 mx-auto" id="procurar">
+                    <input type="text" class="form-control" placeholder="Cidade..." id="pesquisa">
+                    <button class="btn btn-primary" id="btSearch" onclick="procurar(pesquisa)">Procurar</button>
                 </div>
             </div>
             <div class="card-body m-auto" style="width: fit-content; align-content: center;">
@@ -94,11 +94,11 @@
                         <span><img class="owm-weather-icon" id="tempo2" alt="Tempo Atual"></span>
                         <span id="temperatura2"></span>
                         <span>
-                            <img class="owm-weather-icon" src="imgs/vento.png" alt="Icon Vento" style="width: 25px; margin-left: 90px; margin-right: 10px;">
+                            <img src="imgs/vento.png" alt="Icon Vento" style="width: 25px; margin-left: 90px; margin-right: 10px;">
                         </span>
                         <span id="vento2"></span>
                         <span>
-                            <img class="owm-weather-icon" src="imgs/icon_hum.jpg" alt="Icon Humidade" style="width: 40px; margin-left: 90px;">
+                            <img src="imgs/icon_hum.jpg" alt="Icon Humidade" style="width: 40px; margin-left: 90px;">
                         </span>
                         <span id="hum2"></span>
                     </li>

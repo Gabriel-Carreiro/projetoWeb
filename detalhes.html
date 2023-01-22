@@ -4,9 +4,140 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/detalhes.css">
+
     <title>Detalhes</title>
 </head>
-<body>
+<body  class="img-fluid" style="background-image: url('imgs/fundo.webp'); background-repeat: no-repeat; background-size: cover;">
+    <!-- Barra navegação -->
+    <nav class="navbar" style="background-color: lightskyblue">
+        <div class="container-fluid">
+            <!-- Texto escrito na barra à esquerda -->
+            <a class="navbar-brand" href="#"><b>Metereologia</b></a>
+
+            <!-- Botão de navegação na barra à direita -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Dentro do botão de navegação -->
+            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                <!-- Cabeçalho -->
+                <div class="offcanvas-header">
+                    <!-- Título do menu -->
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menu</h5>
+                    <!-- Botão de fechar o menu -->
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <!-- Corpo -->
+                <div class="offcanvas-body">
+                    <!-- Lista de opções -->
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        
+                        <!-- Primeira opção - Home -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="home.html" style="color: white; font-weight: bold;">Home</a>
+                        </li>
+
+                        <!-- Segunda opção - Detalhes -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="detalhes.html" style="color: white; font-weight: bold;">Detalhes</a>
+                        </li>
+
+                        <!-- Terceira opção - Forecast -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="forecast.html" style="color: white; font-weight: bold;">Forecast</a>
+                        </li>
+
+                        <!-- Quarta opção - Favoritos -->
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="favoritos.html" style="color: white; font-weight: bold;">Favoritos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Fim da barra de navegação -->
+
+    <!-- Apresentação detalhada da metereologia de uma cidade escolhida pelo utilizador -->
+    <div class="position-sticky rounded opacity-75">
+        <div class="card text-center mx-auto" style="width: 50%; margin-top: 100px;">
+            <div class="card-header">
+                <h3 id="cidade"></h3>
+                <div class="input-group w-50 mx-auto" id="procurar">
+                    <input type="text" class="form-control" placeholder="Cidade..." id="pesquisa">
+                    <button class="btn btn-primary" id="btSearch" onclick="procurar(pesquisa)">Procurar</button>
+                </div>
+            </div>
+            <div class="card-body" id="table">
+                <div class="container text-center">
+                    <div class="row border-bottom pb-4">
+                        <div class="col-auto">
+                            <img class="owm-weather-icon" id="tempo" alt="Forecast">
+                            <br>
+                            <span id="weather"></span>
+                            <br>
+                            <span id="descricao"></span>
+                        </div>                        
+                        <div class="col-auto ms-4">
+                            <h1 id="temperatura"></h1>
+                            <span>Sensação térmica:
+                                <b>
+                                    <span id="sen_term"></span>
+                                    <span>°C</span>
+                                </b>
+                            </span>
+                        </div>
+                        <div class="col-3 my-auto">
+                            <span>Máxima de: <span id="temp_max"></span>°C</span>
+                            <br>
+                            <span>Mínima de: <span id="temp_min"></span>°C</span>
+                        </div>
+                        <div class="col-3 my-auto">
+                            <span>Nascer do sol: <span id="nascer"></span></span>
+                            <br>
+                            <span>Pôr do sol: <span id="por"></span></span>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center border-bottom py-4">
+                        <div class="col-1">
+                            <img src="imgs/vento.png" alt="Icon vento">
+                        </div>
+                        <div class="col-auto my-auto me-5">
+                            <span><span id="wind"></span>m/s</span>
+                        </div>
+                        <div class="col-1">
+                            <img class="ms-2" src="imgs/direcao.png" alt="Icon direcao">
+                        </div>
+                        <div class="col-auto my-auto me-5">
+                            <span><span id="direcao"></span>°</span>
+                        </div>
+                        <div class="col-1">
+                            <img id="hum" class="ms-2" src="imgs/icon_hum.jpg" alt="Icon humidade">
+                        </div>
+                        <div class="col-auto my-auto me-5">
+                            <span><span id="humidade"></span>%</span>
+                        </div>
+                        <div class="col-1">
+                            <img class="ms-2" src="imgs/pressao.png" alt="Icon pressao">
+                        </div>
+                        <div class="col-auto my-auto me-5">
+                            <span><span id="pressao"></span>hPa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Conectar ao ficheiro externo da home.js -->
+    <script type="text/javascript" src="js/detalhes.js"></script>
     
 </body>
 </html>

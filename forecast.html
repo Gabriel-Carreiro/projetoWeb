@@ -71,8 +71,8 @@
         <div class="card text-center mx-auto" style="width: 50%; margin-top: 100px;">
             <div class="card-header">
                 <h3 id="cidade"></h3>
-                <div id="procurar">
-                    <input type="text" id="pesquisa" placeholder="Cidade...">
+                <div class="input-group w-50 mx-auto" id="procurar">
+                    <input type="text" class="form-control" placeholder="Cidade...">
                     <button class="btn btn-primary" id="btSearch" onclick="procurar(pesquisa)">Procurar</button>
                 </div>
             </div>
@@ -85,33 +85,31 @@
                             <span><img class="owm-weather-icon" id="tempo" alt="Tempo Atual"></span>
                             <span id="temperatura"></span>
                             <span>
-                                <img class="owm-weather-icon" src="imgs/vento.png" alt="Icon Vento" style="width: 25px; margin-left: 90px; margin-right: 10px;">
+                                <img src="imgs/vento.png" alt="Icon Vento" style="width: 25px; margin-left: 90px; margin-right: 10px;">
                             </span>
                             <span id="vento"></span>
                             <span>
-                                <img class="owm-weather-icon" src="imgs/icon_hum.jpg" alt="Icon Humidade" style="width: 40px; margin-left: 90px;">
+                                <img src="imgs/icon_hum.jpg" alt="Icon Humidade" style="width: 40px; margin-left: 90px;">
                             </span>
                             <span id="hum"></span>
                         </li>
                     </div>
                 </ul>
                 <div class="scrolling-container" id="lista2" onclick="forecast_5d()">
-                    <div id="imagem">
-                        
-                    </div>
+                    <div id="imagem"></div>
                     <div class="scrolling-container-content">  
                         <table id="forecast-table">
                             <tr class="time_row">
-                                <th>
+                                <td>
                                     <div id="data_atual"></div>
                                     <img class="owm-weather-icon" id="tempo2" alt="Forecast">                            
-                                </th>
+                                </td>
                             </tr>
                             <tr class="temp_row">
-                                <th>Temperatura [°C]</th>
+                                <td>Temperatura [°C]</td>
                             </tr>
                             <tr class="hum_row">
-                                <th>Humidade [%]</th>
+                                <td>Humidade [%]</td>
                             </tr>
                         </table>
                     </div>

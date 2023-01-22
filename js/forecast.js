@@ -100,9 +100,9 @@ function forecast_3h(element) {
     //console.log(data_value);
     //console.log(atual_data);
 
-    $("#lista").css("display", "none");
-    $("#procurar").css("display", "none");
-    $("#lista2").css("display", "block");
+    $("#lista").hide();
+    $("#procurar").hide();
+    $("#lista2").show();
 
     $.ajax({
         method: "GET",
@@ -161,7 +161,7 @@ function forecast_3h(element) {
 }
 
 function forecast_5d() {
-    $("#lista").css("display", "block");
-    $("#procurar").css("display", "block");
-    $("#lista2").empty();
+    $("#lista").show();
+    $("#procurar").show();
+    $("#lista2").hide();
 }

@@ -11,8 +11,8 @@ let cloneTemp = $("#temp").clone();
 home_list();
 
 function procurar(elemento) {
-    $("#card").css("display", "none");
-    $("#card2").css("display", "block");
+    $("#card").hide();
+    $("#card2").show();
 
     city = $(elemento).val();
     $(elemento).val('');
@@ -112,8 +112,8 @@ function city_value() {
 }
 
 function home2() {
-    $("#card").css("display", "block");
-    $("#card2").css("display", "none");
+    $("#card").show();
+    $("#card2").hide();
 }
 
 function salvar() {

@@ -71,11 +71,11 @@
         <div class="card text-center mx-auto" id="card" style="width: 50%; margin-top: 100px;">
             <div class="card-header">
                 <h3 class="card-title">Favoritos</h3>
-                <div>
-                    <input type="text" id="remover" placeholder="Cidade...">
+                <div class="input-group w-75 mx-auto">
+                    <input type="text" class="form-control" id="inserir" placeholder="Cidade...">
+                    <button class="btn btn-primary rounded-end" id="btInsert" onclick="insert(inserir)">Inserir</button>
+                    <input type="text" class="form-control rounded-start" id="remover" placeholder="Cidade...">
                     <button class="btn btn-primary" id="btRemove" onclick="remove(remover)">Remover</button>
-                    <input type="text" id="inserir" placeholder="Cidade...">
-                    <button class="btn btn-primary" id="btInsert" onclick="insert(inserir)">Inserir</button>
                 </div>
             </div>
             <div class="card-body m-auto" style="width: fit-content; align-content: center;">
@@ -85,11 +85,11 @@
                         <span><img class="owm-weather-icon" id="tempo" alt="Tempo Atual"></span>
                         <span id="temperatura"></span>
                         <span>
-                            <img class="owm-weather-icon" src="imgs/vento.png" alt="Icon Vento" style="width: 25px; margin-left: 90px; margin-right: 10px;">
+                            <img src="imgs/vento.png" alt="Icon Vento" style="width: 25px; margin-left: 90px; margin-right: 10px;">
                         </span>
                         <span id="vento"></span>
                         <span>
-                            <img class="owm-weather-icon" src="imgs/icon_hum.jpg" alt="Icon Humidade" style="width: 40px; margin-left: 90px;">
+                            <img src="imgs/icon_hum.jpg" alt="Icon Humidade" style="width: 40px; margin-left: 90px;">
                         </span>
                         <span id="hum"></span>
                     </li>
