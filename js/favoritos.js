@@ -33,8 +33,8 @@ function list_fav() {
             $("#cidade", liTemp).text(msg.name);
             $("#tempo", liTemp).attr("src", "http://openweathermap.org/img/wn/" + msg.weather[0].icon + ".png");
             $("#temperatura", liTemp).text(parseInt(msg.main.temp_max) + " / " + parseInt(msg.main.temp_min) + "°C");
-            $("#vento2").text(parseFloat(msg.wind.speed.toFixed(1)) + " m/s");
-            $("#hum2").text(parseInt(msg.main.humidity) + " %");
+            $("#vento", liTemp).text(parseFloat(msg.wind.speed.toFixed(1)) + " m/s");
+            $("#hum", liTemp).text(parseInt(msg.main.humidity) + " %");
 
             //Atualizar os valores no html
             $("#lista").append(liTemp);
