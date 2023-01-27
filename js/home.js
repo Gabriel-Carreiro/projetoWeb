@@ -2,7 +2,7 @@
 
 let stored_data = obter();
 let stored_data_size;
-let city = ['Leiria', 'Lisboa', 'Porto', 'Funchal', 'Viseu', 'Braga'];
+let city = ['Leiria', 'Lisboa', 'Porto', 'Funchal', 'Viseu', 'Rio de Janeiro'];
 let apiKey = "82f4545f768cc3b045c97cca21bab0f3";
 let cloneTemp = $("#temp").clone();
 
@@ -31,10 +31,11 @@ function procurar(elemento) {
             }
 
             else {
-                alert("Passei aqui1");
+                //alert("Passei aqui1");
                 if(typeof(Storage) !== "undefined") {
                     localStorage.setItem("nome", city);
                     salvar();
+                    break;
                 }
             
                 else {
@@ -132,7 +133,7 @@ function salvar() {
                 localStorage.setItem('old_data', get_new_data);
             }
 
-            alert(get_old_data);
+            //alert(get_old_data);
 
             let old_data = JSON.parse(get_old_data);   
             old_data.push(get_new_data);

@@ -26,7 +26,7 @@ function list_fav() {
         }).done(function(msg) {
             //alert("Processo GET terminado!");
 
-            console.log(msg);
+            //console.log(msg);
 
             var liTemp = cloneTemp.clone();
 
@@ -133,7 +133,7 @@ function salvar() {
                 localStorage.setItem('old_data', get_new_data);
             }
 
-            alert(get_old_data);
+            //alert(get_old_data);
 
             let old_data = JSON.parse(get_old_data);   
             old_data.push(get_new_data);
