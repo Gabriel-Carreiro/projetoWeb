@@ -16,7 +16,7 @@ if(stored_data != null) {
 }
 
 function list_fav() {
-    alert(stored_data);
+    //alert(stored_data);
     stored_data_size = Object.keys(stored_data).length;
 
     for(var i=0; i<stored_data_size; i++) {

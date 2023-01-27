@@ -50,3 +50,8 @@ function data(msg) {
 
     return dt.substring(16,18) + "H" + dt.substring(19,21);
 }
+pesquisa.addEventListener('keypress', function(e){ 
+       if(e.which == 13){
+          procurar(pesquisa);
+       }
+    });

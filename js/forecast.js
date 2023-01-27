@@ -165,3 +165,9 @@ function forecast_5d() {
     $("#procurar").show();
     $("#lista2").hide();
 }
+
+pesquisa.addEventListener('keypress', function(e){ 
+       if(e.which == 13){
+          procurar(pesquisa);
+       }
+    });

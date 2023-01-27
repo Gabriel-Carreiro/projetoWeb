@@ -11,6 +11,7 @@ let cloneTemp = $("#temp").clone();
 home_list();
 
 function procurar(elemento) {
+    let cidade_existe = 0;
     $("#card").hide();
     $("#card2").show();
 
@@ -27,24 +28,25 @@ function procurar(elemento) {
         for(var i=0; i<stored_data_size; i++) {
             if(stored_data[i] == city) {
                 alert("Cidade já existe!");
+                cidade_existe += 1;
                 break;
             }
-
+        }
+        if(cidade_existe == 0) {
+            if(typeof(Storage) !== "undefined") {
+                localStorage.setItem("nome", city);
+                //alert(city);
+                salvar();
+                //break;
+            }
+        
             else {
-                //alert("Passei aqui1");
-                if(typeof(Storage) !== "undefined") {
-                    localStorage.setItem("nome", city);
-                    salvar();
-                    break;
-                }
-            
-                else {
-                    //Aviso para o não suporte do web storage
-                    alert("Não é válido!");
-                    event.preventDefault();
-                }
+                //Aviso para o não suporte do web storage
+                alert("Não é válido!");
+                event.preventDefault();
             }
         }
+        
     }
 
     else {
@@ -165,3 +167,8 @@ function obter() {
         return null;
     }
 }
+pesquisa.addEventListener('keypress', function(e){ 
+       if(e.which == 13){
+          procurar(pesquisa);
+       }
+    });
