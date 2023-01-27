@@ -1,5 +1,6 @@
 'use strict';
 
+let city_duplicada = 0;
 let stored_data = obter();
 let stored_data_size;
 let apiKey = "82f4545f768cc3b045c97cca21bab0f3";
@@ -15,6 +16,7 @@ if(stored_data != null) {
 }
 
 function list_fav() {
+    alert(stored_data);
     stored_data_size = Object.keys(stored_data).length;
 
     for(var i=0; i<stored_data_size; i++) {
@@ -66,25 +68,33 @@ function insert(elemento) {
         for(var i=0; i<stored_data_size; i++) {
             if(stored_data[i] == city) {
                 alert("Cidade já existe!");
+                city_duplicada = 1;
+                break;
+            }
+        
+        }
+
+        if(city_duplicada == 0) {
+            if(typeof(Storage) !== "undefined") {
+                localStorage.setItem("nome", city);
+                salvar();
+                alert("Passei aqui");
+            }
+        
+            else {
+                //Aviso para o não suporte do web storage
+                alert("Não é válido!");
+                event.preventDefault();
             }
 
-            else {
-                if(typeof(Storage) !== "undefined") {
-                    localStorage.setItem("nome", city);
-                }
-            
-                else {
-                    //Aviso para o não suporte do web storage
-                    alert("Não é válido!");
-                    event.preventDefault();
-                }
-            }
+            city_duplicada = 0;
         }
     }
 
     else {
         if(typeof(Storage) !== "undefined") {
             localStorage.setItem("nome", city);
+            salvar();
         }
     
         else {
@@ -94,7 +104,6 @@ function insert(elemento) {
         }
     }
     
-    salvar();
     //alert(city);
     location.reload();
 }
